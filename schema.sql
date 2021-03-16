@@ -1,3 +1,5 @@
+CREATE DATABASE reviews; 
+
 CREATE TABLE Reviews (
 	Review_ID int NOT NULL AUTO_INCREMENT,
 	Product_ID int NOT NULL,

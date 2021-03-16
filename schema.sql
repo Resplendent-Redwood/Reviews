@@ -49,7 +49,7 @@ CREATE TABLE Characteristics (
 CREATE TABLE Reviewer (
 	Reviewer_ID int NOT NULL AUTO_INCREMENT,
 	Product_ID int NOT NULL,
-	Reviewer_Name varchar(60) NOT NULL,
+	Name varchar(60) NOT NULL,
 	Verified BOOLEAN NOT NULL,
 	Email varchar(60) NOT NULL,
 	PRIMARY KEY (Reviewer_ID)
@@ -63,7 +63,7 @@ ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk2 FOREIGN KEY (Rating) REFERENCES R
 
 ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk3 FOREIGN KEY (Recommend) REFERENCES Ratings(Recommend);
 
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk4 FOREIGN KEY (Reviewer_Name) REFERENCES Reviewer(Reviewer_Name);
+ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk4 FOREIGN KEY (Reviewer_Name) REFERENCES Reviewer(Name);
 
 ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk5 FOREIGN KEY (Reviewer_Verified) REFERENCES Reviewer(Verified);
 

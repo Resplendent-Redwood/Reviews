@@ -1,8 +1,8 @@
 CREATE TABLE `Reviews` (
-	`Review_ID` int NOT NULL AUTO_INCREMENT UNIQUE,
+	`Review_ID` int NOT NULL AUTO_INCREMENT,
 	`Product_ID` int NOT NULL,
 	`Summary` varchar(60) NOT NULL,
-	`Body` TEXT(1000) NOT NULL,
+	`Body` varchar(1000) NOT NULL,
 	`Response` varchar(1000) NOT NULL,
 	`Date` DATE NOT NULL,
 	`Helpfulness` int NOT NULL,
@@ -37,11 +37,11 @@ CREATE TABLE `Ratings` (
 CREATE TABLE `Characteristics` (
 	`Product_ID` int,
 	`Size` smallint(5),
-	`Width` smallint(5) NOT NULL DEFAULT 'None selected',
-	`Comfort` smallint(5) NOT NULL DEFAULT 'None selected',
-	`Length` smallint(5) DEFAULT 'None selected',
-	`Quality` smallint(5) DEFAULT 'None selected',
-	`Fit` smallint(5) DEFAULT 'None selected'
+	`Width` smallint(5),  
+	`Comfort` smallint(5), 
+	`Length` smallint(5),
+	`Quality` smallint(5),
+	`Fit` smallint(5) 
 );
 
 CREATE TABLE `Reviewer` (

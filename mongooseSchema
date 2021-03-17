@@ -8,11 +8,7 @@
     Body: String,
     Response: String,
     Date: Date,
-    
-    photos: {
-      photo_ID: Number,
-      photo_URL: String,
-    }
+    Photo_URL: String,
     
     ratings:  {
       Helpfulness: Number,

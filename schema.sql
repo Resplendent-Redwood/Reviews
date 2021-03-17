@@ -1,7 +1,7 @@
 CREATE DATABASE reviews; 
 
 CREATE TABLE Reviews (
-	Review_ID int NOT NULL AUTO_INCREMENT,
+	Review_ID int NOT NULL AUTO_INCREMENT UNIQUE,
 	Product_ID int NOT NULL,
 	Summary varchar(60) NOT NULL,
 	Body varchar(1000) NOT NULL,
@@ -16,23 +16,23 @@ CREATE TABLE Reviews (
 );
 
 CREATE TABLE Photos (
-	Photo_ID int NOT NULL AUTO_INCREMENT,
+	Photo_ID int NOT NULL AUTO_INCREMENT UNIQUE,
 	Product_ID int NOT NULL,
 	Photo_URL varchar NOT NULL,
 	PRIMARY KEY (Photo_ID)
 );
 
 CREATE TABLE Products (
-	Product_ID int NOT NULL,
+	Product_ID int NOT NULL UNIQUE,
 	Product Name varchar(255) NOT NULL,
 	PRIMARY KEY (Product_ID)
 );
 
 CREATE TABLE Ratings (
-	Rating_ID int NOT NULL AUTO_INCREMENT,
-	Rating smallint(5) NOT NULL,
-	Helpfulness int NOT NULL,
-	Recommend bool NOT NULL,
+	Rating_ID int NOT NULL AUTO_INCREMENT UNIQUE,
+	Rating smallint(5),
+	Helpfulness int, 
+	Recommend bool, 
 	PRIMARY KEY (Rating_ID)
 );
 
@@ -47,10 +47,10 @@ CREATE TABLE Characteristics (
 );
 
 CREATE TABLE Reviewer (
-	Reviewer_ID int NOT NULL AUTO_INCREMENT,
+	Reviewer_ID int NOT NULL AUTO_INCREMENT UNIQUE,
 	Product_ID int NOT NULL,
 	Name varchar(60) NOT NULL,
-	Verified BOOLEAN NOT NULL,
+	Verified BOOLEAN,
 	Email varchar(60) NOT NULL,
 	PRIMARY KEY (Reviewer_ID)
 );

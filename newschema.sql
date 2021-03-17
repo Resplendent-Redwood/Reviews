@@ -15,12 +15,12 @@ CREATE TABLE ReviewSummary (
 	PRIMARY KEY (ReviewID)
 );
 
-CREATE TABLE `Characteristics` (
-	`CharacteristicID` int NOT NULL,
-	`ProductID` int NOT NULL,
-	`Name` varchar(60) NOT NULL,
-	`Rating` smallint(5) NOT NULL,
-	PRIMARY KEY (`CharacteristicID`)
+CREATE TABLE Characteristics (
+	CharacteristicID int NOT NULL,
+	ProductID int NOT NULL,
+	Name varchar(60) NOT NULL,
+	Rating smallint(5) NOT NULL,
+	PRIMARY KEY (CharacteristicID)
 );
 
 CREATE TABLE Product (

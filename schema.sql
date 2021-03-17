@@ -47,12 +47,11 @@ CREATE TABLE Characteristics (
 );
 
 CREATE TABLE Reviewer (
-	Reviewer_ID int NOT NULL AUTO_INCREMENT UNIQUE,
 	Product_ID int NOT NULL,
-	Name varchar(60) NOT NULL,
+	Name varchar(60) NOT NULL UNIQUE,
 	Verified BOOLEAN,
 	Email varchar(60) NOT NULL,
-	PRIMARY KEY (Reviewer_ID)
+	PRIMARY KEY (Name)
 );
 
 ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk0 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID);

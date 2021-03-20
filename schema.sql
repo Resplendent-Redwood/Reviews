@@ -1,73 +1,49 @@
-CREATE DATABASE reviews; 
+DROP DATABASE IF EXISTS RatingsReviews;
+
+CREATE DATABASE RatingsReviews;
+
+USE RatingsReviews;
 
 CREATE TABLE Reviews (
-	Review_ID int NOT NULL AUTO_INCREMENT UNIQUE,
+	Review_ID int NOT NULL AUTO_INCREMENT,
 	Product_ID int NOT NULL,
+	Rating smallint(5) NOT NULL,
 	Summary varchar(60) NOT NULL,
 	Body varchar(1000) NOT NULL,
-	Response varchar(1000) NOT NULL,
-	Date DATE NOT NULL,
-	Helpfulness int NOT NULL,
-	Rating smallint(5) NOT NULL,
-	Recommend BOOLEAN(60) NOT NULL,
+	Recommend BOOLEAN NOT NULL,
+	Reported BOOLEAN NOT NULL,
 	Reviewer_Name varchar(60) NOT NULL,
-	Reviewer_Verified BOOLEAN NOT NULL,
+	Reviewer_Email varchar(60) NOT NULL,
+  Response varchar(1000) NOT NULL,
+	Helpfulness int,
 	PRIMARY KEY (Review_ID)
 );
 
-CREATE TABLE Photos (
-	Photo_ID int NOT NULL AUTO_INCREMENT UNIQUE,
+CREATE TABLE Characteristics (
+	Characteristics_ID int NOT NULL AUTO_INCREMENT,
 	Product_ID int NOT NULL,
-	Photo_URL varchar NOT NULL,
+	Characteristics_Name varchar(25),
+	PRIMARY KEY (Characteristics_ID)
+);
+
+CREATE TABLE Reviews_Photos (
+	Photo_ID int NOT NULL AUTO_INCREMENT,
+	Review_ID int NOT NULL,
+	Photo_URL varchar(1000) NOT NULL,
 	PRIMARY KEY (Photo_ID)
 );
 
-CREATE TABLE Products (
-	Product_ID int NOT NULL UNIQUE,
-	Product Name varchar(255) NOT NULL,
-	PRIMARY KEY (Product_ID)
+CREATE TABLE Characteristic_Reviews (
+	Characteristic_Reviews_ID int NOT NULL AUTO_INCREMENT,
+	Characteristic_ID int,
+	Review_ID int,
+	Characteristic_Value int,
+	PRIMARY KEY (Characteristic_Reviews_ID)
 );
 
-CREATE TABLE Ratings (
-	Rating_ID int NOT NULL AUTO_INCREMENT UNIQUE,
-	Rating smallint(5),
-	Helpfulness int, 
-	Recommend bool, 
-	PRIMARY KEY (Rating_ID)
-);
+ALTER TABLE Characteristic_Reviews ADD CONSTRAINT Characteristic_ID_fk0 FOREIGN KEY (Characteristic_ID) REFERENCES Characteristics(Characteristics_ID);
 
-CREATE TABLE Characteristics (
-	Product_ID int,
-	Size smallint(5),
-	Width smallint(5),  
-	Comfort smallint(5), 
-	Length smallint(5),
-	Quality smallint(5),
-	Fit smallint(5) 
-);
+ALTER TABLE Characteristic_Reviews ADD CONSTRAINT Characteristic_ID_fk1 FOREIGN KEY (Review_ID) REFERENCES Reviews(Review_ID);
 
-CREATE TABLE Reviewer (
-	Product_ID int NOT NULL,
-	Name varchar(60) NOT NULL UNIQUE,
-	Verified BOOLEAN,
-	Email varchar(60) NOT NULL,
-	PRIMARY KEY (Name)
-);
+ALTER TABLE Reviews_Photos ADD CONSTRAINT Reviews_Photos_fk0 FOREIGN KEY (Review_ID) REFERENCES Reviews(Review_ID);
 
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk0 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID);
-
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk1 FOREIGN KEY (Helpfulness) REFERENCES Ratings(Helpfulness);
-
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk2 FOREIGN KEY (Rating) REFERENCES Ratings(Rating);
-
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk3 FOREIGN KEY (Recommend) REFERENCES Ratings(Recommend);
-
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk4 FOREIGN KEY (Reviewer_Name) REFERENCES Reviewer(Name);
-
-ALTER TABLE Reviews ADD CONSTRAINT Reviews_fk5 FOREIGN KEY (Reviewer_Verified) REFERENCES Reviewer(Verified);
-
-ALTER TABLE Photos ADD CONSTRAINT Photos_fk0 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID);
-
-ALTER TABLE Characteristics ADD CONSTRAINT Characteristics_fk0 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID);
-
-ALTER TABLE Reviewer ADD CONSTRAINT Reviewer_fk0 FOREIGN KEY (Product_ID) REFERENCES Products(Product_ID);

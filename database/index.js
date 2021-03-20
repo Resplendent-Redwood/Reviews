@@ -5,9 +5,9 @@ const connection = mysql.createConnection(mysqlConfig);
 
 connection.connect();
 
-const getProductRatings = function(Product_ID) {
+const getProductRatings = function(id) {
   return new Promise((resolve, reject) => {
-    connection.query(`SELECT rating FROM Reviews WHERE Product_ID=${Product_ID}`, function (error, results) {
+    connection.query(`SELECT Rating FROM Reviews WHERE Product_ID=${id}`, function (error, results) {
       if (error) {
         reject(error);
       } else {

@@ -8,7 +8,13 @@ app.use( express.json() );
 
 app.get('/ratings', function (req, res) {
   const id = req.query.id;
-  db.getProductRatings(id).then((response) => res.send(response)).catch((error) => console.log(error));
+  db.getProductRatings(id).then((response) => {
+    let reviews = {};
+    for (let i = 0; i < response.length; i++) {
+      reviews[i] = 1;
+    }
+    res.send(reviews);
+  }).catch((error) => console.log(error));
 });
 
 app.get('/total', function (req, res) {

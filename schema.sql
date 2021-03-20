@@ -8,6 +8,7 @@ CREATE TABLE Reviews (
 	Review_ID int NOT NULL AUTO_INCREMENT,
 	Product_ID int NOT NULL,
 	Rating smallint(5) NOT NULL,
+	Review_Date DATE NOT NULL,
 	Summary varchar(60) NOT NULL,
 	Body varchar(1000) NOT NULL,
 	Recommend BOOLEAN NOT NULL,

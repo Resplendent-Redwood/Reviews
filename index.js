@@ -11,7 +11,8 @@ app.get('/ratings', function (req, res) {
   db.getProductRatings(id).then((response) => {
     let reviews = {};
     for (let i = 0; i < response.length; i++) {
-      reviews[i] = 1;
+      let rating = response[i]['Rating'];
+      reviews[rating] = 1;
     }
     res.send(reviews);
   }).catch((error) => console.log(error));

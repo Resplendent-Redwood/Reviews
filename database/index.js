@@ -17,9 +17,9 @@ const getProductRatings = function(id) {
   });
 };
 
-const getTotalReviews = function(Product_ID) {
+const getProductReviews = function(id) {
   return new Promise((resolve, reject) => {
-    connection.query(`SELECT MIN(Review_ID), MAX(Review_ID) FROM Reviews WHERE Product_ID=${Product_ID}`, function (error, results) {
+    connection.query(`SELECT * FROM Reviews WHERE Product_ID=${id}`, function (error, results) {
       if (error) {
         reject(error);
       } else {
@@ -31,4 +31,4 @@ const getTotalReviews = function(Product_ID) {
 
 module.exports.getProductRatings = getProductRatings;
 
-module.exports.getTotalReviews = getTotalReviews;
+module.exports.getProductReviews = getProductReviews;

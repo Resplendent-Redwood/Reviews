@@ -18,10 +18,10 @@ app.get('/ratings', function (req, res) {
   }).catch((error) => console.log(error));
 });
 
-app.get('/total', function (req, res) {
+app.get('/reviews', function (req, res) {
   const id = req.query.id;
-  db.getTotalReviews(id).then((response) => {
-    res.send(response[0]);
+  db.getProductReviews(id).then((response) => {
+    res.send(response);
   }).catch((error) => console.log(error));
 });
 

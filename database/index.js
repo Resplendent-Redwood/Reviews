@@ -1,12 +1,13 @@
-var mysql = require('mysql');
-var mysqlConfig = require('./config.js');
+const mysql = require('mysql');
+const mysqlConfig = require('./config.js');
 
-var connection = mysql.createConnection(mysqlConfig);
+const connection = mysql.createConnection(mysqlConfig);
+
 connection.connect();
 
-var getProductRating = function(id) {
+const getProductRatings = function(Product_ID) {
   return new Promise((resolve, reject) => {
-    connection.query(`SELECT rating FROM Reviews WHERE Product_ID=${id}`, function (error, results) {
+    connection.query(`SELECT rating FROM Reviews WHERE Product_ID=${Product_ID}`, function (error, results) {
       if (error) {
         reject(error);
       } else {
@@ -16,9 +17,9 @@ var getProductRating = function(id) {
   });
 };
 
-var getProductSummary = function(id) {
+const getTotalReviews = function(Product_ID) {
   return new Promise((resolve, reject) => {
-    connection.query(`SELECT * FROM Reviews WHERE Product_ID=${id}`, function (error, results) {
+    connection.query(`SELECT MIN(Review_ID), MAX(Review_ID) FROM Reviews WHERE Product_ID=${Product_ID}`, function (error, results) {
       if (error) {
         reject(error);
       } else {
@@ -28,4 +29,6 @@ var getProductSummary = function(id) {
   });
 };
 
-module.exports.getProductRating = getProductRating;
+module.exports.getProductRatings = getProductRatings;
+
+module.exports.getTotalReviews = getTotalReviews;

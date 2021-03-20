@@ -6,8 +6,16 @@ var app = express();
 
 app.use( express.json() );
 
-app.get('/reviews', function (req, res) {
-  db.getProductRating().then((response) => res.send(response)).catch((error) => console.log(error));
+app.get('/ratings', function (req, res) {
+  const id = req.query.id;
+  db.getProductRatings(id).then((response) => res.send(response)).catch((error) => console.log(error));
+});
+
+app.get('/total', function (req, res) {
+  const id = req.query.id;
+  db.getTotalReviews(id).then((response) => {
+    res.send(response[0]);
+  }).catch((error) => console.log(error));
 });
 
 app.listen(port, () => {
